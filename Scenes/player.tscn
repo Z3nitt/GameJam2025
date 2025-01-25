@@ -1,0 +1,55 @@
+[gd_scene load_steps=2 format=3 uid="uid://dqygcga61w61q"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rqjao"]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"attack",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"attack_run",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"hurt",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"idle_trident",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"jump",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"run",
+"speed": 5.0
+}]
+
+[node name="Player" type="CharacterBody2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_rqjao")
+animation = &"hurt"
+autoplay = "idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+
+[node name="Marker2D" type="Marker2D" parent="."]

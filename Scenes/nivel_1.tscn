@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://3qjb37ae21u1"]
+
+[node name="Nivel1" type="Node2D"]
+
+[node name="TileMapLayerPrincipal" type="TileMapLayer" parent="."]
+
+[node name="TileMapLayerAtras" type="TileMapLayer" parent="."]
+z_index = -1
+
+[node name="TileMapLayerDelante" type="TileMapLayer" parent="."]
+z_index = 1

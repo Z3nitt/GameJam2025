@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://dmgjt400kogcq"]
+
+[node name="BulletImpacEffect" type="AnimatedSprite2D"]
+
+[node name="Timer" type="Timer" parent="."]

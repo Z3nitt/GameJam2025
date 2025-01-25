@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://ds0c5tkgjpjm5"]
+
+[node name="PezEspada" type="CharacterBody2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
