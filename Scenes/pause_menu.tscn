@@ -1,0 +1,65 @@
+[gd_scene load_steps=6 format=3 uid="uid://b04ehjswqqki7"]
+
+[ext_resource type="Script" path="res://Scripts/pause_menu.gd" id="1_pqlhx"]
+[ext_resource type="Texture2D" uid="uid://btbdhff3ke3d0" path="res://Assets/Pruebas/Misc/gothic-castle-preview.png" id="2_n5awp"]
+[ext_resource type="Theme" uid="uid://dx4p1ywnq03do" path="res://Assets/Pruebas/UI/new_theme.tres" id="3_3e5jp"]
+[ext_resource type="Texture2D" uid="uid://b81dn7ytrcaei" path="res://Assets/Pruebas/UI/run6.png" id="4_0ujnc"]
+[ext_resource type="Texture2D" uid="uid://dbqcduatqsgc5" path="res://Assets/Pruebas/UI/frame3.png" id="5_n7dke"]
+
+[node name="PauseMenu" type="CanvasLayer"]
+process_mode = 3
+layer = 2
+script = ExtResource("1_pqlhx")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+modulate = Color(0.454902, 0.470588, 0.45098, 1)
+offset_left = -224.0
+offset_top = -7.0
+offset_right = 821.0
+offset_bottom = 360.0
+texture = ExtResource("2_n5awp")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("3_3e5jp")
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="ContinueButton" type="Button" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "CONTINUAR"
+
+[node name="MenuButton" type="Button" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "MENU PRINCIPAL
+"
+
+[node name="PlayerSprite" type="Sprite2D" parent="."]
+position = Vector2(290, 288)
+scale = Vector2(1.403, 1.403)
+texture = ExtResource("4_0ujnc")
+
+[node name="EnemySprite" type="Sprite2D" parent="."]
+position = Vector2(469, 286)
+scale = Vector2(1.403, 1.403)
+texture = ExtResource("5_n7dke")
+
+[connection signal="pressed" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/ContinueButton" to="." method="_on_continue_button_pressed"]
+[connection signal="pressed" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/MenuButton" to="." method="_on_menu_button_pressed"]

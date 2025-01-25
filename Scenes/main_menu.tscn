@@ -1,0 +1,63 @@
+[gd_scene load_steps=6 format=3 uid="uid://dw0xbp2c4v076"]
+
+[ext_resource type="Script" path="res://Scripts/main_menu.gd" id="1_2ylq6"]
+[ext_resource type="Texture2D" uid="uid://btbdhff3ke3d0" path="res://Assets/Pruebas/Misc/gothic-castle-preview.png" id="2_jjji8"]
+[ext_resource type="Theme" uid="uid://dx4p1ywnq03do" path="res://Assets/Pruebas/UI/new_theme.tres" id="3_l4jhg"]
+[ext_resource type="Texture2D" uid="uid://b81dn7ytrcaei" path="res://Assets/Pruebas/UI/run6.png" id="4_jlldw"]
+[ext_resource type="Texture2D" uid="uid://dbqcduatqsgc5" path="res://Assets/Pruebas/UI/frame3.png" id="5_j572n"]
+
+[node name="MainMenu" type="CanvasLayer"]
+process_mode = 3
+layer = 2
+script = ExtResource("1_2ylq6")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_left = -224.0
+offset_top = -7.0
+offset_right = 821.0
+offset_bottom = 360.0
+texture = ExtResource("2_jjji8")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("3_l4jhg")
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="PlayButton" type="Button" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "JUGAR"
+
+[node name="ExitButton" type="Button" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "SALIR"
+
+[node name="PlayerSprite" type="Sprite2D" parent="."]
+position = Vector2(290, 288)
+scale = Vector2(1.403, 1.403)
+texture = ExtResource("4_jlldw")
+
+[node name="EnemySprite" type="Sprite2D" parent="."]
+position = Vector2(469, 286)
+scale = Vector2(1.403, 1.403)
+texture = ExtResource("5_j572n")
+
+[connection signal="pressed" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]

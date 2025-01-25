@@ -1,0 +1,114 @@
+[gd_scene load_steps=13 format=3 uid="uid://c6o2kl3h600ka"]
+
+[ext_resource type="Script" path="res://Scripts/enemigoprueba.gd" id="1_5jf1c"]
+[ext_resource type="Texture2D" uid="uid://bo2skol2j5hgk" path="res://Assets/Pruebas/Enemies/ghost-Idle.png" id="2_q11w8"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xptnm"]
+atlas = ExtResource("2_q11w8")
+region = Rect2(0, 0, 64, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vxhja"]
+atlas = ExtResource("2_q11w8")
+region = Rect2(64, 0, 64, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rmbyl"]
+atlas = ExtResource("2_q11w8")
+region = Rect2(128, 0, 64, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h5ftw"]
+atlas = ExtResource("2_q11w8")
+region = Rect2(192, 0, 64, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sd87f"]
+atlas = ExtResource("2_q11w8")
+region = Rect2(256, 0, 64, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2hxmm"]
+atlas = ExtResource("2_q11w8")
+region = Rect2(320, 0, 64, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pdsg7"]
+atlas = ExtResource("2_q11w8")
+region = Rect2(384, 0, 64, 80)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mmjej"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xptnm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vxhja")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rmbyl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h5ftw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sd87f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2hxmm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pdsg7")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 6.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"Spawn",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"Walk",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7m5j5"]
+size = Vector2(27, 45)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qbbg2"]
+size = Vector2(22, 42)
+
+[node name="ENEMIGOPRUEBA" type="CharacterBody2D" groups=["Enemy"]]
+collision_layer = 4
+collision_mask = 3
+script = ExtResource("1_5jf1c")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(1, -27)
+sprite_frames = SubResource("SpriteFrames_mmjej")
+animation = &"Idle"
+autoplay = "Idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1.5, -24.5)
+shape = SubResource("RectangleShape2D_7m5j5")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
+
+[node name="Hurtbox" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+position = Vector2(1, -24)
+shape = SubResource("RectangleShape2D_qbbg2")
+debug_color = Color(0.971332, 0, 0.448677, 0.42)
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]

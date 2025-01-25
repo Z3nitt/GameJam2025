@@ -1,5 +1,69 @@
-[gd_scene format=3 uid="uid://cofeui118oxbu"]
+[gd_scene load_steps=9 format=3 uid="uid://cofeui118oxbu"]
+
+[ext_resource type="Texture2D" uid="uid://boiyp5begg7yc" path="res://Assets/Pruebas/Misc/enemy-death.png" id="1_bnpeq"]
+[ext_resource type="Script" path="res://Scripts/enemy_death_effect.gd" id="1_d8am4"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ibbpa"]
+atlas = ExtResource("1_bnpeq")
+region = Rect2(0, 0, 67, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0e7mp"]
+atlas = ExtResource("1_bnpeq")
+region = Rect2(67, 0, 67, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ga6v2"]
+atlas = ExtResource("1_bnpeq")
+region = Rect2(134, 0, 67, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1fain"]
+atlas = ExtResource("1_bnpeq")
+region = Rect2(201, 0, 67, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xre08"]
+atlas = ExtResource("1_bnpeq")
+region = Rect2(268, 0, 67, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0vhiu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ibbpa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0e7mp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ga6v2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1fain")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xre08")
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": false,
+"name": &"Enemy_death",
+"speed": 10.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="Enemy_Death_Effect" type="AnimatedSprite2D"]
+position = Vector2(0, -19)
+sprite_frames = SubResource("SpriteFrames_0vhiu")
+animation = &"Enemy_death"
+autoplay = "Enemy_death"
+frame = 3
+frame_progress = 0.0852207
+script = ExtResource("1_d8am4")
 
 [node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
