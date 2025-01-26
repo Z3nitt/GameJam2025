@@ -21,7 +21,7 @@ var player_death_effect = preload("res://Scenes/player_death_effect.tscn")
 
 # Gravedad, velocidad y salto
 const GRAVITY = 800
-const SPEED = 300
+const SPEED = 400
 const JUMP = -450
 const AIR_CONTROL = 150  # Control horizontal en el aire
 
