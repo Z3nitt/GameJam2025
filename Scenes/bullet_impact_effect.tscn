@@ -1,38 +1,31 @@
-[gd_scene load_steps=8 format=3 uid="uid://dmgjt400kogcq"]
+[gd_scene load_steps=7 format=3 uid="uid://dmgjt400kogcq"]
 
-[ext_resource type="Texture2D" uid="uid://b06hbx1qyfhm" path="res://Assets/Pruebas/Misc/impact.png" id="1_7imtx"]
+[ext_resource type="Texture2D" uid="uid://q4l6sc33a06c" path="res://Assets/Definitivos/Misc/proyectil_choca.png" id="1_gs1dj"]
 [ext_resource type="Script" path="res://Scripts/bullet_impact_effect.gd" id="1_wnxya"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ghwjc"]
-atlas = ExtResource("1_7imtx")
-region = Rect2(0, 0, 12, 12)
+[sub_resource type="AtlasTexture" id="AtlasTexture_kfhdr"]
+atlas = ExtResource("1_gs1dj")
+region = Rect2(0, 0, 113, 93)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ia355"]
-atlas = ExtResource("1_7imtx")
-region = Rect2(12, 0, 12, 12)
+[sub_resource type="AtlasTexture" id="AtlasTexture_aa8e4"]
+atlas = ExtResource("1_gs1dj")
+region = Rect2(113, 0, 113, 93)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_b4mtb"]
-atlas = ExtResource("1_7imtx")
-region = Rect2(24, 0, 12, 12)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_5r62g"]
-atlas = ExtResource("1_7imtx")
-region = Rect2(36, 0, 12, 12)
+[sub_resource type="AtlasTexture" id="AtlasTexture_t4x3r"]
+atlas = ExtResource("1_gs1dj")
+region = Rect2(226, 0, 113, 93)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_oksqa"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_ghwjc")
+"texture": SubResource("AtlasTexture_kfhdr")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_ia355")
+"texture": SubResource("AtlasTexture_aa8e4")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_b4mtb")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_5r62g")
+"texture": SubResource("AtlasTexture_t4x3r")
 }, {
 "duration": 1.0,
 "texture": null
@@ -48,10 +41,12 @@ animations = [{
 }]
 
 [node name="BulletImpacEffect" type="AnimatedSprite2D"]
+position = Vector2(2, -2)
 sprite_frames = SubResource("SpriteFrames_oksqa")
 animation = &"Impact"
 autoplay = "Impact"
 frame = 3
+frame_progress = 1.0
 script = ExtResource("1_wnxya")
 
 [node name="Timer" type="Timer" parent="."]

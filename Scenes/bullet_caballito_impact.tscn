@@ -26,6 +26,9 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_x5ofe")
+}, {
+"duration": 1.0,
+"texture": null
 }],
 "loop": false,
 "name": &"Impact",
@@ -37,11 +40,11 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Bullet_Caballito_Impact" type="AnimatedSprite2D"]
+[node name="Bullet_Caballito_Impact" type="AnimatedSprite2D" groups=["EnemyBullet"]]
 sprite_frames = SubResource("SpriteFrames_wuag8")
 animation = &"Impact"
 autoplay = "Impact"
-frame = 2
+frame = 3
 frame_progress = 1.0
 script = ExtResource("1_gm143")
 

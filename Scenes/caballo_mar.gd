@@ -2,7 +2,14 @@ extends CharacterBody2D
 
 var enemy_death_effect = preload("res://Scenes/enemy_death_effect.tscn")
 
-var bullet = preload("res://Scenes/bullet_caballito.tscn")
+var Bullet = preload("res://Scenes/bullet_caballito.tscn")
+
+
+
+@onready var muzzle = $Muzzle
+
+var canshoot = true
+var player = null
 
 @export var patrol_points : Node
 @export var speed : int = 1500
@@ -14,110 +21,46 @@ var bullet = preload("res://Scenes/bullet_caballito.tscn")
 @onready var detection_zone = $DetectionPlayer
 @onready var shoot_timer = $ShootTimer
 @onready var animated_sprite_2d = $AnimatedSprite2D
+
 @onready var timer = $Timer
 
+func _ready() -> void:
+	animated_sprite_2d.play("Idle")
 
-const GRAVITY = 1000
+func _on_detection_player_body_entered(body: Node2D) -> void:
+	if body.is_in_group("Player"):
+		player = body
 
-enum State {Idle, Walk, Shoot }
-
-var current_state : State
-var direction : Vector2 = Vector2.LEFT
-var number_of_points: int
-var point_positions : Array[Vector2]
-var current_point: Vector2
-var current_point_position: int
-var can_walk : bool
-var player_detected: bool = false
+func _physics_process(delta: float) -> void:
+	pass
 
 
+func _on_shoot_timer_timeout() -> void:
+	canshoot = true
+	if player != null:
+		shoot()
 
-func _ready():
-	if patrol_points !=null:
-		number_of_points = patrol_points.get_children().size()
-		for point in patrol_points.get_children():
-			point_positions.append(point.global_position)
-		current_point = point_positions[current_point_position]
-	else:
-		print("No hay puntos")
-	
-	timer.wait_time = wait_time
-	shoot_timer.wait_time = shoot_interval
-	
-	current_state = State.Idle
-
-
-func _physics_process(delta: float):
-	enemy_gravity(delta)
-	if player_detected:
-		enemy_shoot(delta)
-	else:
-		enemy_idle(delta)
-		enemy_walk(delta)
-		
-	#enemy_idle(delta)
-	#enemy_walk(delta)
-	
-	move_and_slide()
-	
-	enemy_animations()
-
-func enemy_gravity(delta):
-	velocity.y += GRAVITY * delta
-
-func enemy_idle(delta):
-	if !can_walk:
-		velocity.x = move_toward(velocity.x, 0, speed * delta)
-		current_state = State.Idle
-
-func enemy_walk(delta):
-	if !can_walk:
-		return
-	
-	if abs(position.x - current_point.x) > 0.5:
-		velocity.x = direction.x * speed * delta
-		current_state = State.Walk
-	else:
-		current_point_position += 1
-
-		if current_point_position >= number_of_points:
-			current_point_position = 0
-
-		current_point = point_positions[current_point_position]
-
-		if current_point.x > position.x:
-			direction = Vector2.RIGHT
-		else:
-			direction = Vector2.LEFT
-		
-		can_walk = false
-		timer.start()
-	
-	animated_sprite_2d.flip_h = direction.x > 0
-
-func enemy_shoot(delta):
-	if !shoot_timer.is_stopped():
-		return
-
-	shoot_timer.start()
-	current_state = State.Shoot
-	
-	var bullet_instance = bullet.instantiate() as Node2D
-	bullet_instance.global_position = position + Vector2(direction.x * 10, 0)  # Ajusta el offset
-	bullet_instance.direction = direction.x  # Asegúrate de que las balas disparen en la dirección correcta
-	get_parent().add_child(bullet_instance)
-
-func enemy_animations():
-	if current_state == State.Idle and !can_walk:
-		animated_sprite_2d.play("Idle")
-	elif current_state == State.Shoot:
+func shoot():
+	if canshoot:
 		animated_sprite_2d.play("Shoot")
+		var bullet = Bullet.instantiate()
+		bullet.position = muzzle.global_position
+		bullet.direction = sign(player.global_position.x - global_position.x)
+		get_parent().add_child(bullet)
+		
+		$ShootTimer.start()
+		canshoot = false
+		animated_sprite_2d.play("Idle")
 
 func _on_timer_timeout() -> void:
-	can_walk = true
+	pass # Replace with function body.
 
 
-func _on_hurtbox_area_entered(area: Area2D):
+func _on_animated_sprite_2d_animation_finished() -> void:
+	pass # Replace with function body.
+
+
+func _on_hurtbox_area_entered(area: Area2D) -> void:
 	print("Hurtbox")
 	if area.get_parent().has_method("get_damage_amount"):
 		var node = area.get_parent() as Node
@@ -130,25 +73,3 @@ func _on_hurtbox_area_entered(area: Area2D):
 		get_parent().add_child(enemy_death_effect_instance)
 		GameManager.score_points += 100
 		queue_free()
-	
-
-
-func _on_animated_sprite_2d_animation_finished() -> void:
-	pass # Replace with function body.
-
-
-func _on_detection_player_body_entered(body: Node2D) -> void:
-	if body.is_in_group("Player"):
-		player_detected = true
-		shoot_timer.start()
-
-
-func _on_shoot_timer_timeout() -> void:
-	pass # Replace with function body.
-
-
-func _on_detection_player_body_exited(body: Node2D) -> void:
-	if body.is_in_group("Player"):
-		player_detected = false
-		shoot_timer.stop()
-		current_state = State.Idle

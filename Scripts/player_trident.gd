@@ -151,8 +151,12 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 		is_shooting = false  # Permitir otros estados
 		current_state = State.Idle
 
+func change_scene_to_gameover():
+	get_tree().change_scene_to_file("res://Scenes/gameover.tscn")
+
 
 func _on_hurtbox_body_entered(body: Node2D):
+	print(body.name)
 	if body.is_in_group("Enemy"):
 		print("Colision enemigo", body.damage_amount)
 		
@@ -160,4 +164,20 @@ func _on_hurtbox_body_entered(body: Node2D):
 		HealthMonitor.decrease_health(body.damage_amount)
 	if HealthMonitor.current_health == 0:
 		player_death()
-		get_tree().change_scene_to_file("res://Scenes/gameover.tscn")
+		call_deferred("change_scene_to_gameover")
+
+
+
+func _on_hurtbox_area_entered(area: Area2D) -> void:
+	# Verifica si el área colisionada es de un EnemyBullet
+	if area.is_in_group("EnemyBullet"):  # Asegúrate de que la bala esté en el grupo "EnemyBullet"
+		var bullet = area.get_parent()  # El padre debería ser la bala, que tiene el `damage_amount`
+		if bullet.has_method("get_damage_amount"):  # Verifica si tiene el método `get_damage_amount`
+			var damage = bullet.get_damage_amount()
+			hit_animation_player.play("hit")  
+			HealthMonitor.decrease_health(damage)  # Resta el daño a la salud
+			print("Vida:", HealthMonitor.current_health)
+			# Si la salud llega a 0, puedes agregar la animación de muerte o invocar el fin del juego
+			if HealthMonitor.current_health == 0:
+				player_death()
+				call_deferred("change_scene_to_gameover")

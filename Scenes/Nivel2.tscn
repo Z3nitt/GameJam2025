@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=4 uid="uid://7cxlipbnfjw4"]
+[gd_scene load_steps=22 format=4 uid="uid://7cxlipbnfjw4"]
 
 [ext_resource type="Script" path="res://Scripts/nivel_2.gd" id="1_e04kc"]
 [ext_resource type="Texture2D" uid="uid://q0ugauq2ecwv" path="res://Assets/Definitivos/TileMap/tiles_level_2.png" id="1_gh42e"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://c7wund4fgwo3h" path="res://Scenes/game_screen.tscn" id="6_81hid"]
 [ext_resource type="PackedScene" uid="uid://dol26st0cfseo" path="res://Scenes/breakeable_object.tscn" id="7_da6xf"]
 [ext_resource type="PackedScene" uid="uid://6b0t42yhsr7j" path="res://Scenes/calamar.tscn" id="8_78413"]
+[ext_resource type="PackedScene" uid="uid://bx2xe6plc1p85" path="res://Scenes/caballo_mar.tscn" id="9_8cn4i"]
 [ext_resource type="PackedScene" uid="uid://jkm4k40xrwni" path="res://Scenes/parallax_background_profundidad.tscn" id="11_gnlil"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qgtjo"]
@@ -10778,7 +10779,7 @@ sources/0 = SubResource("TileSetAtlasSource_5dewr")
 sources/1 = SubResource("TileSetAtlasSource_20fki")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_idfmk"]
-size = Vector2(300, 397)
+size = Vector2(327, 594)
 
 [node name="Nivel2" type="Node2D"]
 script = ExtResource("1_e04kc")
@@ -10798,7 +10799,7 @@ tile_map_data = PackedByteArray("AABiAfn/AAAfAAwAAABiAfr/AAAfAA0AAABiAfv/AAAfAA4
 tile_set = SubResource("TileSet_gapxk")
 
 [node name="PlayerTrident" parent="." instance=ExtResource("3_82jsi")]
-position = Vector2(7, -114)
+position = Vector2(97, -118)
 
 [node name="Node" type="Node" parent="."]
 
@@ -10824,7 +10825,7 @@ player = NodePath("../PlayerTrident")
 [node name="Calamar" parent="Enemies" node_paths=PackedStringArray("patrol_points") instance=ExtResource("8_78413")]
 position = Vector2(945, -90)
 patrol_points = NodePath("PatrolPoint")
-damage_amount = 1
+speed = 100
 
 [node name="PatrolPoint" type="Node2D" parent="Enemies/Calamar"]
 
@@ -10832,7 +10833,100 @@ damage_amount = 1
 position = Vector2(2, 85)
 
 [node name="Point2" type="Marker2D" parent="Enemies/Calamar/PatrolPoint"]
-position = Vector2(5, -341)
+position = Vector2(2, -541)
+
+[node name="Calamar2" parent="Enemies" node_paths=PackedStringArray("patrol_points") instance=ExtResource("8_78413")]
+position = Vector2(2443, -88)
+patrol_points = NodePath("PatrolPoint")
+speed = 100
+
+[node name="PatrolPoint" type="Node2D" parent="Enemies/Calamar2"]
+
+[node name="Point1" type="Marker2D" parent="Enemies/Calamar2/PatrolPoint"]
+position = Vector2(2, 85)
+
+[node name="Point2" type="Marker2D" parent="Enemies/Calamar2/PatrolPoint"]
+position = Vector2(2, -541)
+
+[node name="Calamar3" parent="Enemies" node_paths=PackedStringArray("patrol_points") instance=ExtResource("8_78413")]
+position = Vector2(5192, -97)
+patrol_points = NodePath("PatrolPoint")
+speed = 100
+
+[node name="PatrolPoint" type="Node2D" parent="Enemies/Calamar3"]
+
+[node name="Point1" type="Marker2D" parent="Enemies/Calamar3/PatrolPoint"]
+position = Vector2(2, 85)
+
+[node name="Point2" type="Marker2D" parent="Enemies/Calamar3/PatrolPoint"]
+position = Vector2(2, -541)
+
+[node name="Calamar4" parent="Enemies" node_paths=PackedStringArray("patrol_points") instance=ExtResource("8_78413")]
+position = Vector2(6821, -110)
+patrol_points = NodePath("PatrolPoint")
+speed = 100
+
+[node name="PatrolPoint" type="Node2D" parent="Enemies/Calamar4"]
+
+[node name="Point1" type="Marker2D" parent="Enemies/Calamar4/PatrolPoint"]
+position = Vector2(2, 85)
+
+[node name="Point2" type="Marker2D" parent="Enemies/Calamar4/PatrolPoint"]
+position = Vector2(2, -541)
+
+[node name="CaballoMar" parent="Enemies" instance=ExtResource("9_8cn4i")]
+position = Vector2(528, -204)
+shoot_interval = 0.5
+
+[node name="CaballoMar2" parent="Enemies" instance=ExtResource("9_8cn4i")]
+position = Vector2(1926, -28)
+shoot_interval = 0.5
+
+[node name="CaballoMar3" parent="Enemies" instance=ExtResource("9_8cn4i")]
+position = Vector2(2928, -359)
+shoot_interval = 0.5
+
+[node name="CaballoMar4" parent="Enemies" instance=ExtResource("9_8cn4i")]
+position = Vector2(4710, -12)
+shoot_interval = 0.5
+
+[node name="CaballoMar5" parent="Enemies" instance=ExtResource("9_8cn4i")]
+position = Vector2(6077, -33)
+shoot_interval = 0.5
+
+[node name="CaballoMar6" parent="Enemies" instance=ExtResource("9_8cn4i")]
+position = Vector2(8018, -12)
+shoot_interval = 0.5
+
+[node name="Calamar5" parent="Enemies" node_paths=PackedStringArray("patrol_points") instance=ExtResource("8_78413")]
+position = Vector2(9269, -106)
+patrol_points = NodePath("PatrolPoint")
+speed = 100
+
+[node name="PatrolPoint" type="Node2D" parent="Enemies/Calamar5"]
+
+[node name="Point1" type="Marker2D" parent="Enemies/Calamar5/PatrolPoint"]
+position = Vector2(2, 85)
+
+[node name="Point2" type="Marker2D" parent="Enemies/Calamar5/PatrolPoint"]
+position = Vector2(2, -541)
+
+[node name="CaballoMar7" parent="Enemies" instance=ExtResource("9_8cn4i")]
+position = Vector2(9990, -132)
+shoot_interval = 0.5
+
+[node name="Calamar6" parent="Enemies" node_paths=PackedStringArray("patrol_points") instance=ExtResource("8_78413")]
+position = Vector2(10677, -118)
+patrol_points = NodePath("PatrolPoint")
+speed = 100
+
+[node name="PatrolPoint" type="Node2D" parent="Enemies/Calamar6"]
+
+[node name="Point1" type="Marker2D" parent="Enemies/Calamar6/PatrolPoint"]
+position = Vector2(2, 85)
+
+[node name="Point2" type="Marker2D" parent="Enemies/Calamar6/PatrolPoint"]
+position = Vector2(2, -541)
 
 [node name="GameScreen" parent="." instance=ExtResource("6_81hid")]
 
@@ -10865,9 +10959,11 @@ scale = Vector2(3, 3)
 
 [node name="Area2D" type="Area2D" parent="."]
 position = Vector2(11012, -144)
+collision_layer = 128
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(34, -56.5)
+position = Vector2(21.5, -97)
 shape = SubResource("RectangleShape2D_idfmk")
 debug_color = Color(0.791943, 0.589173, 5.77569e-07, 0.42)
 

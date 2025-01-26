@@ -1,10 +1,15 @@
-[gd_scene load_steps=6 format=3 uid="uid://b04ehjswqqki7"]
+[gd_scene load_steps=11 format=3 uid="uid://b04ehjswqqki7"]
 
 [ext_resource type="Script" path="res://Scripts/pause_menu.gd" id="1_pqlhx"]
-[ext_resource type="Texture2D" uid="uid://btbdhff3ke3d0" path="res://Assets/Pruebas/Misc/gothic-castle-preview.png" id="2_n5awp"]
+[ext_resource type="Texture2D" uid="uid://g5s06we2phli" path="res://Assets/Definitivos/Backgrounds/background2.png" id="2_qynov"]
 [ext_resource type="Theme" uid="uid://dx4p1ywnq03do" path="res://Assets/Pruebas/UI/new_theme.tres" id="3_3e5jp"]
-[ext_resource type="Texture2D" uid="uid://b81dn7ytrcaei" path="res://Assets/Pruebas/UI/run6.png" id="4_0ujnc"]
-[ext_resource type="Texture2D" uid="uid://dbqcduatqsgc5" path="res://Assets/Pruebas/UI/frame3.png" id="5_n7dke"]
+[ext_resource type="Texture2D" uid="uid://du0pua378lsnq" path="res://Assets/Definitivos/Backgrounds/middlegroun2.png" id="3_cutwj"]
+[ext_resource type="Texture2D" uid="uid://c10x1cy3kfwa1" path="res://Assets/Definitivos/Player/saltar_arma.png" id="4_kl8f6"]
+[ext_resource type="Texture2D" uid="uid://5e8bnfliod4j" path="res://Assets/Definitivos/Enemies/calamar.png" id="5_gemqk"]
+[ext_resource type="Texture2D" uid="uid://cwo3j5w4x3h0l" path="res://UI/cabecera.png" id="6_pwihi"]
+[ext_resource type="Texture2D" uid="uid://og1d6823rotn" path="res://UI/continuar-21.png" id="8_7tssb"]
+[ext_resource type="Texture2D" uid="uid://dl7m62ain0sbw" path="res://UI/menu_principal.png" id="9_rmddd"]
+[ext_resource type="Texture2D" uid="uid://dhiydgqh6qpu1" path="res://UI/blanco-04.png" id="10_bnjv0"]
 
 [node name="PauseMenu" type="CanvasLayer"]
 process_mode = 3
@@ -12,57 +17,96 @@ layer = 2
 script = ExtResource("1_pqlhx")
 
 [node name="TextureRect" type="TextureRect" parent="."]
-modulate = Color(0.454902, 0.470588, 0.45098, 1)
-offset_left = -224.0
-offset_top = -7.0
-offset_right = 821.0
-offset_bottom = 360.0
-scale = Vector2(3, 3)
-texture = ExtResource("2_n5awp")
+offset_left = -399.0
+offset_top = 2.0
+offset_right = 2168.0
+offset_bottom = 1082.0
+texture = ExtResource("2_qynov")
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="TextureRect2" type="TextureRect" parent="."]
+z_index = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -398.0
+offset_top = 11.0
+offset_right = 249.0
+offset_bottom = 11.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("3_3e5jp")
+texture = ExtResource("3_cutwj")
+
+[node name="PlayerSprite" type="Sprite2D" parent="."]
+position = Vector2(333, 801)
+rotation = -0.187039
+scale = Vector2(1.403, 1.403)
+texture = ExtResource("4_kl8f6")
+hframes = 2
+
+[node name="EnemySprite" type="Sprite2D" parent="."]
+position = Vector2(1740, 206)
+rotation = 0.657201
+scale = Vector2(1.403, 1.403)
+texture = ExtResource("5_gemqk")
+hframes = 5
+
+[node name="TextureRect3" type="TextureRect" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -468.0
+offset_top = 57.0
+offset_right = 468.0
+offset_bottom = 362.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+texture = ExtResource("6_pwihi")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+z_index = 2
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -368.0
+offset_top = -147.0
+offset_right = -83.0
+offset_bottom = 53.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2.5, 2.5)
 
 [node name="PanelContainer" type="PanelContainer" parent="MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer"]
+[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/PanelContainer"]
 layout_mode = 2
-theme_override_constants/margin_left = 15
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 15
-theme_override_constants/margin_bottom = 10
+theme = ExtResource("3_3e5jp")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer2"]
 layout_mode = 2
 
-[node name="ContinueButton" type="Button" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="ContinueButton" type="TextureButton" parent="MarginContainer/PanelContainer/MarginContainer2/VBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 45
-text = "CONTINUAR"
+texture_normal = ExtResource("8_7tssb")
 
-[node name="MenuButton" type="Button" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="MenuButton" type="TextureButton" parent="MarginContainer/PanelContainer/MarginContainer2/VBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 45
-text = "MENU PRINCIPAL
-"
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource("9_rmddd")
 
-[node name="PlayerSprite" type="Sprite2D" parent="."]
-position = Vector2(290, 288)
-scale = Vector2(1.403, 1.403)
-texture = ExtResource("4_0ujnc")
+[node name="TextureRect4" type="TextureRect" parent="."]
+offset_left = 1592.0
+offset_top = 803.0
+offset_right = 2631.0
+offset_bottom = 1780.0
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("10_bnjv0")
 
-[node name="EnemySprite" type="Sprite2D" parent="."]
-position = Vector2(469, 286)
-scale = Vector2(1.403, 1.403)
-texture = ExtResource("5_n7dke")
-
-[connection signal="pressed" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/ContinueButton" to="." method="_on_continue_button_pressed"]
-[connection signal="pressed" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/MenuButton" to="." method="_on_menu_button_pressed"]
+[connection signal="pressed" from="MarginContainer/PanelContainer/MarginContainer2/VBoxContainer/ContinueButton" to="." method="_on_continue_button_pressed"]
+[connection signal="pressed" from="MarginContainer/PanelContainer/MarginContainer2/VBoxContainer/MenuButton" to="." method="_on_menu_button_pressed"]

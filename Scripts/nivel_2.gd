@@ -15,6 +15,6 @@ func _process(delta: float) -> void:
 
 
 func _on_area_2d_body_entered(body):
-	if body.is_in_group("PlayerTrident"):
+	if body.is_in_group("Player"):
 		print("ENTRA EN AREA TP")
-		#get_tree().change_scene_to_file("res://Scenes/Nivel2.tscn")
+		get_tree().change_scene_to_file("res://Scenes/credits.tscn")

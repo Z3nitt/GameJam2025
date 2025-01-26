@@ -96,12 +96,15 @@ animations = [{
 size = Vector2(112.5, 321)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e288b"]
-size = Vector2(87.5, 297)
+size = Vector2(194, 400)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7j04q"]
-radius = 1016.11
+radius = 539.809
 
-[node name="CaballoMar" type="CharacterBody2D"]
+[node name="CaballoMar" type="CharacterBody2D" groups=["Enemy"]]
+scale = Vector2(0.5, 0.5)
+collision_layer = 4
+collision_mask = 3
 script = ExtResource("1_hfvvm")
 damage_amount = 2
 
@@ -113,6 +116,7 @@ autoplay = "Idle"
 frame = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(-10.25, -216)
 shape = SubResource("RectangleShape2D_plsov")
 
@@ -120,12 +124,12 @@ shape = SubResource("RectangleShape2D_plsov")
 wait_time = 3.0
 autostart = true
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Hurtbox" type="Area2D" parent="."]
 collision_layer = 4
 collision_mask = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(-12.25, -213.5)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+position = Vector2(-7, -238)
 shape = SubResource("RectangleShape2D_e288b")
 debug_color = Color(0.954585, 2.79158e-06, 0.547659, 0.42)
 
@@ -133,7 +137,8 @@ debug_color = Color(0.954585, 2.79158e-06, 0.547659, 0.42)
 position = Vector2(-117, -209)
 
 [node name="DetectionPlayer" type="Area2D" parent="."]
-collision_layer = 4
+visible = false
+collision_layer = 256
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionPlayer"]
@@ -143,7 +148,11 @@ debug_color = Color(0.855846, 0.168888, 0.794886, 0.42)
 
 [node name="ShootTimer" type="Timer" parent="."]
 wait_time = 2.0
+autostart = true
 
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
+[connection signal="body_entered" from="Hurtbox" to="." method="_on_hurtbox_body_entered"]
 [connection signal="body_entered" from="DetectionPlayer" to="." method="_on_detection_player_body_entered"]
-[connection signal="body_exited" from="DetectionPlayer" to="." method="_on_detection_player_body_exited"]
 [connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]

@@ -10,10 +10,13 @@ config_version=5
 
 [application]
 
-config/name="JuegoJam2025"
+config/name="Malagueta Adventure"
 run/main_scene="res://Scenes/main_menu.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
-config/icon="res://icon.svg"
+boot_splash/bg_color=Color(1, 1, 1, 1)
+boot_splash/image="res://UI/logo-02.png"
+config/icon="res://UI/logo.png"
+boot_splash/minimum_display_time=8
 
 [autoload]
 
@@ -33,6 +36,7 @@ window/stretch/mode="viewport"
 
 Player=""
 Enemy=""
+EnemyBullet=""
 
 [input]
 
@@ -74,6 +78,8 @@ escape={
 2d_physics/layer_6="BREAKEABLEOBJECTS"
 2d_physics/layer_7="BULLET"
 2d_physics/layer_8="TP"
+2d_physics/layer_9="AREA"
+2d_physics/layer_10="BULLETENEMY"
 
 [rendering]
 

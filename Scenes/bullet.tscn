@@ -1,24 +1,31 @@
-[gd_scene load_steps=7 format=3 uid="uid://byou2kbai5565"]
+[gd_scene load_steps=8 format=3 uid="uid://byou2kbai5565"]
 
-[ext_resource type="Texture2D" uid="uid://nnby8u5vhdum" path="res://Assets/Pruebas/Misc/shot.png" id="1_0e7s5"]
 [ext_resource type="Script" path="res://Scripts/bullet.gd" id="2_cijgn"]
+[ext_resource type="Texture2D" uid="uid://bk48c0ul8mq5q" path="res://Assets/Definitivos/Misc/proyectil.png" id="2_idbwj"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_is8r8"]
-atlas = ExtResource("1_0e7s5")
-region = Rect2(0, 0, 6, 4)
+[sub_resource type="AtlasTexture" id="AtlasTexture_77iwu"]
+atlas = ExtResource("2_idbwj")
+region = Rect2(194, 0, 194, 56)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_5j76x"]
-atlas = ExtResource("1_0e7s5")
-region = Rect2(6, 0, 6, 4)
+[sub_resource type="AtlasTexture" id="AtlasTexture_l0or0"]
+atlas = ExtResource("2_idbwj")
+region = Rect2(388, 0, 194, 56)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x2pui"]
+atlas = ExtResource("2_idbwj")
+region = Rect2(582, 0, 194, 56)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_r1vwn"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_is8r8")
+"texture": SubResource("AtlasTexture_77iwu")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_5j76x")
+"texture": SubResource("AtlasTexture_l0or0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x2pui")
 }],
 "loop": true,
 "name": &"Shoot",
@@ -31,12 +38,12 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_mpb54"]
-radius = 3.0
+radius = 51.7333
 
 [node name="Bullet" type="AnimatedSprite2D"]
+position = Vector2(-4, -2)
 sprite_frames = SubResource("SpriteFrames_r1vwn")
 animation = &"Shoot"
-frame_progress = 0.944718
 script = ExtResource("2_cijgn")
 
 [node name="Timer" type="Timer" parent="."]
@@ -46,9 +53,10 @@ autostart = true
 
 [node name="BulletHitbox" type="Area2D" parent="."]
 collision_layer = 66
-collision_mask = 37
+collision_mask = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BulletHitbox"]
+position = Vector2(51.7333, 6.13177e-06)
 shape = SubResource("CircleShape2D_mpb54")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -1,10 +1,16 @@
-[gd_scene load_steps=6 format=3 uid="uid://dw0xbp2c4v076"]
+[gd_scene load_steps=12 format=3 uid="uid://dw0xbp2c4v076"]
 
 [ext_resource type="Script" path="res://Scripts/main_menu.gd" id="1_2ylq6"]
-[ext_resource type="Texture2D" uid="uid://btbdhff3ke3d0" path="res://Assets/Pruebas/Misc/gothic-castle-preview.png" id="2_jjji8"]
+[ext_resource type="Texture2D" uid="uid://g5s06we2phli" path="res://Assets/Definitivos/Backgrounds/background2.png" id="2_088v4"]
+[ext_resource type="Texture2D" uid="uid://du0pua378lsnq" path="res://Assets/Definitivos/Backgrounds/middlegroun2.png" id="3_ic5eo"]
 [ext_resource type="Theme" uid="uid://dx4p1ywnq03do" path="res://Assets/Pruebas/UI/new_theme.tres" id="3_l4jhg"]
-[ext_resource type="Texture2D" uid="uid://b81dn7ytrcaei" path="res://Assets/Pruebas/UI/run6.png" id="4_jlldw"]
-[ext_resource type="Texture2D" uid="uid://dbqcduatqsgc5" path="res://Assets/Pruebas/UI/frame3.png" id="5_j572n"]
+[ext_resource type="Texture2D" uid="uid://c10x1cy3kfwa1" path="res://Assets/Definitivos/Player/saltar_arma.png" id="5_tx8rq"]
+[ext_resource type="Texture2D" uid="uid://5e8bnfliod4j" path="res://Assets/Definitivos/Enemies/calamar.png" id="6_etgad"]
+[ext_resource type="Texture2D" uid="uid://cwo3j5w4x3h0l" path="res://UI/cabecera.png" id="7_2pwoo"]
+[ext_resource type="Texture2D" uid="uid://dpndq0i3rfxts" path="res://UI/jugar.png" id="8_0d6tr"]
+[ext_resource type="Texture2D" uid="uid://cuwdqsrwms36f" path="res://UI/salir.png" id="9_gc0yw"]
+[ext_resource type="Texture2D" uid="uid://dhiydgqh6qpu1" path="res://UI/blanco-04.png" id="10_bhmlp"]
+[ext_resource type="Texture2D" uid="uid://6grkcrd6w56" path="res://UI/creditos.png" id="11_cyg3t"]
 
 [node name="MainMenu" type="CanvasLayer"]
 process_mode = 3
@@ -12,55 +18,103 @@ layer = 2
 script = ExtResource("1_2ylq6")
 
 [node name="TextureRect" type="TextureRect" parent="."]
-offset_left = -224.0
-offset_top = -7.0
-offset_right = 821.0
-offset_bottom = 360.0
-scale = Vector2(3, 3)
-texture = ExtResource("2_jjji8")
+offset_left = -399.0
+offset_top = 2.0
+offset_right = 2168.0
+offset_bottom = 1082.0
+texture = ExtResource("2_088v4")
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="TextureRect2" type="TextureRect" parent="."]
+z_index = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -398.0
+offset_top = 11.0
+offset_right = 249.0
+offset_bottom = 11.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("3_l4jhg")
+texture = ExtResource("3_ic5eo")
+
+[node name="PlayerSprite" type="Sprite2D" parent="."]
+position = Vector2(380, 771)
+rotation = -0.187039
+scale = Vector2(1.403, 1.403)
+texture = ExtResource("5_tx8rq")
+hframes = 2
+
+[node name="EnemySprite" type="Sprite2D" parent="."]
+position = Vector2(1740, 206)
+rotation = 0.657201
+scale = Vector2(1.403, 1.403)
+texture = ExtResource("6_etgad")
+hframes = 5
+
+[node name="TextureRect3" type="TextureRect" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -468.0
+offset_top = 57.0
+offset_right = 468.0
+offset_bottom = 362.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+texture = ExtResource("7_2pwoo")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+z_index = 2
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -368.0
+offset_top = -147.0
+offset_right = -83.0
+offset_bottom = 53.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2.5, 2.5)
 
 [node name="PanelContainer" type="PanelContainer" parent="MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer"]
+[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/PanelContainer"]
 layout_mode = 2
-theme_override_constants/margin_left = 15
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 15
-theme_override_constants/margin_bottom = 10
+theme = ExtResource("3_l4jhg")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer2"]
 layout_mode = 2
 
-[node name="PlayButton" type="Button" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="PlayButton" type="TextureButton" parent="MarginContainer/PanelContainer/MarginContainer2/VBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 45
-text = "JUGAR"
+texture_normal = ExtResource("8_0d6tr")
 
-[node name="ExitButton" type="Button" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="ExitButton" type="TextureButton" parent="MarginContainer/PanelContainer/MarginContainer2/VBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 45
-text = "SALIR"
+texture_normal = ExtResource("9_gc0yw")
 
-[node name="PlayerSprite" type="Sprite2D" parent="."]
-position = Vector2(290, 288)
-scale = Vector2(1.403, 1.403)
-texture = ExtResource("4_jlldw")
+[node name="TextureRect4" type="TextureRect" parent="."]
+offset_left = 1592.0
+offset_top = 803.0
+offset_right = 2631.0
+offset_bottom = 1780.0
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("10_bhmlp")
 
-[node name="EnemySprite" type="Sprite2D" parent="."]
-position = Vector2(469, 286)
-scale = Vector2(1.403, 1.403)
-texture = ExtResource("5_j572n")
+[node name="Credits" type="TextureButton" parent="."]
+offset_left = 18.0
+offset_top = 924.0
+offset_right = 122.0
+offset_bottom = 964.0
+scale = Vector2(2, 2)
+texture_normal = ExtResource("11_cyg3t")
 
-[connection signal="pressed" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
-[connection signal="pressed" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]
+[connection signal="pressed" from="MarginContainer/PanelContainer/MarginContainer2/VBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="MarginContainer/PanelContainer/MarginContainer2/VBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]
+[connection signal="pressed" from="Credits" to="." method="_on_credits_pressed"]

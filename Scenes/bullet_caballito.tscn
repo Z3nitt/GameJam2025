@@ -34,7 +34,9 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2sd08"]
 size = Vector2(185, 62)
 
-[node name="bullet_caballito" type="AnimatedSprite2D"]
+[node name="bullet_caballito" type="AnimatedSprite2D" groups=["EnemyBullet"]]
+position = Vector2(10, -23)
+scale = Vector2(0.446043, 0.434343)
 sprite_frames = SubResource("SpriteFrames_5muyq")
 animation = &"Shoot"
 script = ExtResource("1_wjyxl")
@@ -44,14 +46,14 @@ wait_time = 5.0
 one_shot = true
 autostart = true
 
-[node name="BulletHitbox" type="Area2D" parent="."]
-collision_layer = 68
-collision_mask = 3
+[node name="BulletHitbox" type="Area2D" parent="." groups=["EnemyBullet"]]
+collision_layer = 4
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BulletHitbox"]
 position = Vector2(-23.5, 11)
 shape = SubResource("RectangleShape2D_2sd08")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="area_entered" from="BulletHitbox" to="." method="_on_bullet_hitbox_area_entered"]
 [connection signal="body_entered" from="BulletHitbox" to="." method="_on_bullet_hitbox_body_entered"]
-[connection signal="body_exited" from="BulletHitbox" to="." method="_on_bullet_hitbox_body_exited"]

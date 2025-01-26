@@ -33,31 +33,33 @@ centered = false
 motion_scale = Vector2(0.9, 1)
 
 [node name="Sprite2D" type="Sprite2D" parent="MiddlegroundParallaxLayer"]
-position = Vector2(1, 2)
-scale = Vector2(1.0651, 0.993056)
+position = Vector2(1, 113)
+scale = Vector2(1.0651, 1.04279)
 texture = ExtResource("2_b1x8a")
 centered = false
 
 [node name="Sprite2D2" type="Sprite2D" parent="MiddlegroundParallaxLayer"]
-position = Vector2(2718, 2)
+position = Vector2(2718, 108)
+scale = Vector2(1.065, 1.05864)
 texture = ExtResource("2_b1x8a")
 centered = false
 flip_h = true
 
 [node name="Sprite2D3" type="Sprite2D" parent="MiddlegroundParallaxLayer"]
-position = Vector2(5286, 7)
-scale = Vector2(1.0651, 0.993056)
+position = Vector2(5443, 107)
+scale = Vector2(1.0651, 1.07132)
 texture = ExtResource("2_b1x8a")
 centered = false
 
 [node name="Sprite2D4" type="Sprite2D" parent="MiddlegroundParallaxLayer"]
-position = Vector2(8019, 3)
+position = Vector2(8177, 113)
+scale = Vector2(1, 1.0523)
 texture = ExtResource("2_b1x8a")
 centered = false
 flip_h = true
 
 [node name="Sprite2D5" type="Sprite2D" parent="MiddlegroundParallaxLayer"]
-position = Vector2(10587, 5)
-scale = Vector2(1.0651, 0.993056)
+position = Vector2(10744, 123)
+scale = Vector2(1.0651, 0.993661)
 texture = ExtResource("2_b1x8a")
 centered = false

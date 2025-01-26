@@ -106,7 +106,6 @@ func _on_hurtbox_area_entered(area: Area2D):
 		get_parent().add_child(enemy_death_effect_instance)
 		GameManager.score_points += 100
 		queue_free()
-	
 
 
 func _on_animated_sprite_2d_animation_finished() -> void:
