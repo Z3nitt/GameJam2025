@@ -1,13 +1,149 @@
-[gd_scene format=3 uid="uid://bx2xe6plc1p85"]
+[gd_scene load_steps=18 format=3 uid="uid://bx2xe6plc1p85"]
+
+[ext_resource type="Script" path="res://Scenes/caballo_mar.gd" id="1_hfvvm"]
+[ext_resource type="Texture2D" uid="uid://1ddp3ke8sknr" path="res://Assets/Definitivos/Enemies/caballito.png" id="1_ng5ld"]
+[ext_resource type="Texture2D" uid="uid://drolvv3ajggab" path="res://Assets/Definitivos/Enemies/caballito_disparo.png" id="2_h2sit"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ewcvb"]
+atlas = ExtResource("1_ng5ld")
+region = Rect2(0, 0, 175, 432)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kw1m8"]
+atlas = ExtResource("1_ng5ld")
+region = Rect2(175, 0, 175, 432)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gm1kf"]
+atlas = ExtResource("1_ng5ld")
+region = Rect2(350, 0, 175, 432)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ifvu8"]
+atlas = ExtResource("1_ng5ld")
+region = Rect2(525, 0, 175, 432)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v8ge8"]
+atlas = ExtResource("1_ng5ld")
+region = Rect2(700, 0, 175, 432)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_at3ea"]
+atlas = ExtResource("1_ng5ld")
+region = Rect2(875, 0, 175, 432)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k36i5"]
+atlas = ExtResource("2_h2sit")
+region = Rect2(0, 0, 190, 490)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8g060"]
+atlas = ExtResource("2_h2sit")
+region = Rect2(190, 0, 190, 490)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nmawk"]
+atlas = ExtResource("2_h2sit")
+region = Rect2(380, 0, 190, 490)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qngbe"]
+atlas = ExtResource("2_h2sit")
+region = Rect2(570, 0, 190, 490)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_q3vbq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ewcvb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kw1m8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gm1kf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ifvu8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v8ge8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_at3ea")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k36i5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8g060")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nmawk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qngbe")
+}],
+"loop": false,
+"name": &"Shoot",
+"speed": 4.0
+}, {
+"frames": [],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_plsov"]
+size = Vector2(112.5, 321)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e288b"]
+size = Vector2(87.5, 297)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7j04q"]
+radius = 1016.11
 
 [node name="CaballoMar" type="CharacterBody2D"]
+script = ExtResource("1_hfvvm")
+damage_amount = 2
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-6, -216)
+sprite_frames = SubResource("SpriteFrames_q3vbq")
+animation = &"Shoot"
+autoplay = "Idle"
+frame = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-10.25, -216)
+shape = SubResource("RectangleShape2D_plsov")
 
 [node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
 
 [node name="Area2D" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-12.25, -213.5)
+shape = SubResource("RectangleShape2D_e288b")
+debug_color = Color(0.954585, 2.79158e-06, 0.547659, 0.42)
+
+[node name="Muzzle" type="Marker2D" parent="."]
+position = Vector2(-117, -209)
+
+[node name="DetectionPlayer" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionPlayer"]
+position = Vector2(0, -223)
+shape = SubResource("CircleShape2D_7j04q")
+debug_color = Color(0.855846, 0.168888, 0.794886, 0.42)
+
+[node name="ShootTimer" type="Timer" parent="."]
+wait_time = 2.0
+
+[connection signal="body_entered" from="DetectionPlayer" to="." method="_on_detection_player_body_entered"]
+[connection signal="body_exited" from="DetectionPlayer" to="." method="_on_detection_player_body_exited"]
+[connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]

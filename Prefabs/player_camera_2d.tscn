@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://css5sx7kk7jta"]
+
+[ext_resource type="Script" path="res://Scripts/player_camera_2d.gd" id="1_vxd3c"]
+
+[node name="PlayerCamera2D" type="Camera2D" node_paths=PackedStringArray("player")]
+position = Vector2(6, 0)
+limit_left = -211
+limit_top = -572
+limit_right = 11172
+limit_bottom = 390
+editor_draw_limits = true
+script = ExtResource("1_vxd3c")
+player = NodePath("")
+smoothing_enabled = true
+smoothing_distance = 2

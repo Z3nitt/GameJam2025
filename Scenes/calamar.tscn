@@ -1,13 +1,93 @@
-[gd_scene format=3 uid="uid://6b0t42yhsr7j"]
+[gd_scene load_steps=11 format=3 uid="uid://6b0t42yhsr7j"]
 
-[node name="Calamar" type="CharacterBody2D"]
+[ext_resource type="Texture2D" uid="uid://5e8bnfliod4j" path="res://Assets/Definitivos/Enemies/calamar.png" id="1_es7k2"]
+[ext_resource type="Script" path="res://Scenes/calamar.gd" id="1_jtcl0"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3ru40"]
+atlas = ExtResource("1_es7k2")
+region = Rect2(0, 3, 240, 278)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jmjij"]
+atlas = ExtResource("1_es7k2")
+region = Rect2(240, 3, 240, 278)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rd11r"]
+atlas = ExtResource("1_es7k2")
+region = Rect2(480, 3, 240, 278)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lmcju"]
+atlas = ExtResource("1_es7k2")
+region = Rect2(720, 3, 240, 278)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8awvl"]
+atlas = ExtResource("1_es7k2")
+region = Rect2(960, 3, 240, 278)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_idmch"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3ru40")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jmjij")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rd11r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lmcju")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8awvl")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_aypsx"]
+size = Vector2(107, 244)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w3la3"]
+size = Vector2(99, 234)
+
+[node name="Calamar" type="CharacterBody2D" groups=["Enemy"]]
+collision_layer = 4
+collision_mask = 3
+script = ExtResource("1_jtcl0")
+speed = 1500
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(1, -140)
+sprite_frames = SubResource("SpriteFrames_idmch")
+animation = &"Idle"
+autoplay = "Idle"
+frame = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1.5, -125)
+shape = SubResource("RectangleShape2D_aypsx")
 
 [node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Hurtbox" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+position = Vector2(-0.5, -124)
+shape = SubResource("RectangleShape2D_w3la3")
+debug_color = Color(0.953406, 1.92523e-07, 0.553728, 0.42)
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
+[connection signal="body_entered" from="Hurtbox" to="." method="_on_hurtbox_body_entered"]

@@ -2,14 +2,39 @@
 
 [ext_resource type="Script" path="res://Scripts/game_screen.gd" id="1_4xp3g"]
 [ext_resource type="PackedScene" uid="uid://dk6noupyops55" path="res://Scenes/health_bar.tscn" id="2_hth7m"]
-[ext_resource type="Texture2D" uid="uid://dtc8yudgrovwx" path="res://Assets/Pruebas/UI/adsads.png" id="3_hcl4u"]
+[ext_resource type="Texture2D" uid="uid://e3qn4551y73n" path="res://Assets/Definitivos/Misc/almeja.png" id="4_25leu"]
 [ext_resource type="Texture2D" uid="uid://cchn4dgkrjgpo" path="res://Assets/Pruebas/UI/pause.png" id="4_tr83a"]
 
 [node name="GameScreen" type="CanvasLayer"]
 script = ExtResource("1_4xp3g")
 
+[node name="ScoreLabel" type="Label" parent="."]
+unique_name_in_owner = true
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -26.0
+offset_top = 16.0
+offset_right = 130.0
+offset_bottom = 67.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 36
+text = "SCORE: 0"
+
 [node name="HealthBar" parent="." instance=ExtResource("2_hth7m")]
 position = Vector2(10, 10)
+
+[node name="PauseTextureButton" type="TextureButton" parent="."]
+offset_left = 1883.0
+offset_top = 1.0
+offset_right = 1895.0
+offset_bottom = 13.0
+scale = Vector2(3, 3)
+size_flags_horizontal = 8
+size_flags_vertical = 0
+texture_normal = ExtResource("4_tr83a")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 anchors_preset = 15
@@ -33,27 +58,25 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="Control" type="Control" parent="MarginContainer/VBoxContainer/HBoxContainer"]
-custom_minimum_size = Vector2(16, 0)
+custom_minimum_size = Vector2(48, 0)
 layout_mode = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="MarginContainer/VBoxContainer/HBoxContainer/Control"]
-texture = ExtResource("3_hcl4u")
+position = Vector2(0, 47)
+scale = Vector2(0.222222, 0.193146)
+texture = ExtResource("4_25leu")
 centered = false
-hframes = 20
-vframes = 4
 
-[node name="CollectibleLabel" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer"]
-custom_minimum_size = Vector2(-3, 0)
+[node name="CollectibleLabel" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/Control"]
+custom_minimum_size = Vector2(-9, 0)
 layout_mode = 2
+offset_left = 83.0
+offset_top = 51.0
+offset_right = 104.0
+offset_bottom = 101.0
 size_flags_horizontal = 0
 size_flags_vertical = 0
-theme_override_font_sizes/font_size = 12
+theme_override_font_sizes/font_size = 36
 text = "0"
 
-[node name="PauseTextureButton" type="TextureButton" parent="MarginContainer"]
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 0
-texture_normal = ExtResource("4_tr83a")
-
-[connection signal="pressed" from="MarginContainer/PauseTextureButton" to="." method="_on_pause_texture_button_pressed"]
+[connection signal="pressed" from="PauseTextureButton" to="." method="_on_pause_texture_button_pressed"]

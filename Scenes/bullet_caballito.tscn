@@ -1,0 +1,57 @@
+[gd_scene load_steps=8 format=3 uid="uid://cq03beaccirge"]
+
+[ext_resource type="Texture2D" uid="uid://dprg6mc50gt3w" path="res://Assets/Definitivos/Enemies/pro_inicio.png" id="1_5lanv"]
+[ext_resource type="Script" path="res://Scenes/bullet_caballito.gd" id="1_wjyxl"]
+[ext_resource type="Texture2D" uid="uid://b7datmviat0e6" path="res://Assets/Definitivos/Enemies/pro_medio.png" id="2_udab4"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sq017"]
+atlas = ExtResource("1_5lanv")
+region = Rect2(0, 0, 278, 198)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bva3r"]
+atlas = ExtResource("2_udab4")
+region = Rect2(0, 0, 328, 90)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5muyq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sq017")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bva3r")
+}],
+"loop": true,
+"name": &"Shoot",
+"speed": 10.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2sd08"]
+size = Vector2(185, 62)
+
+[node name="bullet_caballito" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_5muyq")
+animation = &"Shoot"
+script = ExtResource("1_wjyxl")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+autostart = true
+
+[node name="BulletHitbox" type="Area2D" parent="."]
+collision_layer = 68
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BulletHitbox"]
+position = Vector2(-23.5, 11)
+shape = SubResource("RectangleShape2D_2sd08")
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="body_entered" from="BulletHitbox" to="." method="_on_bullet_hitbox_body_entered"]
+[connection signal="body_exited" from="BulletHitbox" to="." method="_on_bullet_hitbox_body_exited"]

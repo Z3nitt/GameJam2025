@@ -1,0 +1,51 @@
+[gd_scene load_steps=7 format=3 uid="uid://brktcveshoe1e"]
+
+[ext_resource type="Texture2D" uid="uid://c2w66e80g2x72" path="res://Assets/Definitivos/Enemies/pro_final.png" id="1_8m72v"]
+[ext_resource type="Script" path="res://Scenes/bullet_caballito_impact.gd" id="1_gm143"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pgoog"]
+atlas = ExtResource("1_8m72v")
+region = Rect2(514, 0, 257, 191)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fcdrg"]
+atlas = ExtResource("1_8m72v")
+region = Rect2(257, 0, 257, 191)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x5ofe"]
+atlas = ExtResource("1_8m72v")
+region = Rect2(0, 0, 257, 191)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wuag8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pgoog")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fcdrg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x5ofe")
+}],
+"loop": false,
+"name": &"Impact",
+"speed": 10.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Bullet_Caballito_Impact" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_wuag8")
+animation = &"Impact"
+autoplay = "Impact"
+frame = 2
+frame_progress = 1.0
+script = ExtResource("1_gm143")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.4
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

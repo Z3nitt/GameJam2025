@@ -51,8 +51,7 @@ animations = [{
 sprite_frames = SubResource("SpriteFrames_oksqa")
 animation = &"Impact"
 autoplay = "Impact"
-frame = 4
-frame_progress = 1.0
+frame = 3
 script = ExtResource("1_wnxya")
 
 [node name="Timer" type="Timer" parent="."]

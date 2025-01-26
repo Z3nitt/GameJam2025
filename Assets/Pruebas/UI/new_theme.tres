@@ -1,6 +1,4 @@
-[gd_resource type="Theme" load_steps=8 format=3 uid="uid://dx4p1ywnq03do"]
-
-[ext_resource type="FontFile" uid="uid://jdon0mqlyu0i" path="res://Assets/Pruebas/Fonts/GravityRegular5.ttf" id="1_ocsnm"]
+[gd_resource type="Theme" load_steps=7 format=3 uid="uid://dx4p1ywnq03do"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hs8ol"]
 content_margin_left = 10.0
@@ -67,7 +65,7 @@ bg_color = Color(0.54902, 0.298039, 0.207843, 0.619608)
 
 [resource]
 Button/font_sizes/font_size = 10
-Button/fonts/font = ExtResource("1_ocsnm")
+Button/fonts/font = null
 Button/styles/disabled = SubResource("StyleBoxFlat_hs8ol")
 Button/styles/focus = SubResource("StyleBoxFlat_nkssh")
 Button/styles/hover = SubResource("StyleBoxFlat_r68fv")

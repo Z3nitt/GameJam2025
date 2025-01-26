@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://dol26st0cfseo"]
+
+[ext_resource type="Script" path="res://Scripts/breakeable_object.gd" id="1_onvcv"]
+[ext_resource type="Texture2D" uid="uid://b42yiadkckpba" path="res://Assets/Definitivos/Misc/papelera.png" id="2_5yobs"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_k1yog"]
+radius = 1.41421
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xidwn"]
+radius = 32.7567
+
+[node name="BreakeableObject" type="StaticBody2D"]
+script = ExtResource("1_onvcv")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-1.19209e-07, -26)
+scale = Vector2(0.440909, 0.465686)
+texture = ExtResource("2_5yobs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -192)
+shape = SubResource("CircleShape2D_k1yog")
+
+[node name="Hitbox" type="Area2D" parent="."]
+collision_layer = 32
+collision_mask = 64
+
+[node name="HitboxCollider" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(0, -31)
+shape = SubResource("CircleShape2D_xidwn")
+debug_color = Color(0.752548, 0.451969, 0.202905, 0.42)
+
+[connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]

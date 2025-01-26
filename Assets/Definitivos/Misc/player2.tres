@@ -1,0 +1,9 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://cailq55vvbidv"]
+
+[ext_resource type="Shader" uid="uid://cl8oph8rbj0dw" path="res://Assets/Pruebas/Misc/player_flash_hit.tres" id="1_ojmrs"]
+
+[resource]
+resource_local_to_scene = true
+shader = ExtResource("1_ojmrs")
+shader_parameter/enabled = false
+shader_parameter/hit_colour = Color(0.87451, 0, 0.364706, 1)

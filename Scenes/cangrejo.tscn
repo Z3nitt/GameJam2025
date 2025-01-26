@@ -1,13 +1,154 @@
-[gd_scene format=3 uid="uid://bw4v4fn0xgscn"]
+[gd_scene load_steps=20 format=3 uid="uid://bw4v4fn0xgscn"]
 
-[node name="Cangrejo" type="CharacterBody2D"]
+[ext_resource type="Script" path="res://Scripts/cangrejo.gd" id="1_6prbh"]
+[ext_resource type="Texture2D" uid="uid://bu40q1nb8hkot" path="res://Assets/Definitivos/Enemies/cangrejo_arriba.png" id="1_qpcmf"]
+[ext_resource type="Texture2D" uid="uid://dcshcgtneoqlw" path="res://Assets/Definitivos/Enemies/cangrejo_abajo-11.png" id="2_oo60n"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f4xvc"]
+atlas = ExtResource("1_qpcmf")
+region = Rect2(0, 0, 101, 65)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w86rn"]
+atlas = ExtResource("1_qpcmf")
+region = Rect2(101, 0, 101, 65)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_reh4b"]
+atlas = ExtResource("1_qpcmf")
+region = Rect2(202, 0, 101, 65)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1fv40"]
+atlas = ExtResource("2_oo60n")
+region = Rect2(0, 0, 145, 69)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_52u2g"]
+atlas = ExtResource("2_oo60n")
+region = Rect2(145, 0, 145, 69)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hv8my"]
+atlas = ExtResource("2_oo60n")
+region = Rect2(290, 0, 145, 69)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5lol5"]
+atlas = ExtResource("2_oo60n")
+region = Rect2(435, 0, 145, 69)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bqaox"]
+atlas = ExtResource("2_oo60n")
+region = Rect2(580, 0, 145, 69)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yhqcm"]
+atlas = ExtResource("2_oo60n")
+region = Rect2(725, 0, 145, 69)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6n5ts"]
+atlas = ExtResource("2_oo60n")
+region = Rect2(870, 0, 145, 69)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wec3u"]
+atlas = ExtResource("2_oo60n")
+region = Rect2(1015, 0, 145, 69)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rkxr1"]
+atlas = ExtResource("2_oo60n")
+region = Rect2(1160, 0, 145, 69)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_isfyb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f4xvc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w86rn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_reh4b")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1fv40")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_52u2g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hv8my")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5lol5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bqaox")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yhqcm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6n5ts")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wec3u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rkxr1")
+}],
+"loop": true,
+"name": &"Walk",
+"speed": 9.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bphas"]
+size = Vector2(92, 24)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fiqxh"]
+size = Vector2(106, 24)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hw8dc"]
+size = Vector2(123, 31)
+
+[node name="Cangrejo" type="CharacterBody2D" groups=["Enemy"]]
+position = Vector2(0, -23)
+collision_layer = 4
+collision_mask = 3
+script = ExtResource("1_6prbh")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-1, -9)
+sprite_frames = SubResource("SpriteFrames_isfyb")
+animation = &"Idle"
+autoplay = "Idle"
+frame_progress = 0.876706
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-6, 10)
+shape = SubResource("RectangleShape2D_bphas")
 
 [node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
 
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-12, 10)
+shape = SubResource("RectangleShape2D_fiqxh")
+debug_color = Color(0.948704, 3.85046e-06, 0.577036, 0.42)
+
+[node name="GetDamage" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GetDamage"]
+position = Vector2(-5.5, -20)
+shape = SubResource("RectangleShape2D_hw8dc")
+debug_color = Color(1, 1, 1, 0.42)
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="body_entered" from="GetDamage" to="." method="_on_get_damage_body_entered"]

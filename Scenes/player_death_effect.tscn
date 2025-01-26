@@ -64,6 +64,7 @@ animations = [{
 }]
 
 [node name="PlayerDeathEffect" type="Node2D"]
+scale = Vector2(3, 3)
 script = ExtResource("1_524nw")
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
@@ -76,6 +77,7 @@ explosiveness = 0.5
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -25)
+scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_r3msy")
 animation = &"Death"
 autoplay = "Death"
